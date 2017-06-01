@@ -41,7 +41,7 @@ namespace DotNetAppSqlDb.Controllers
         public ActionResult Create()
         {
             Trace.WriteLine("GET /Todos/Create");
-            return View();
+            return View(new Todo { CreatedDate = DateTime.Now });
         }
 
         // POST: Todos/Create
