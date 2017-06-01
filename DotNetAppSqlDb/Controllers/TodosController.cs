@@ -22,7 +22,7 @@ namespace DotNetAppSqlDb.Controllers
         }
 
         // GET: Todos/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int? id)
         {
             Trace.WriteLine("GET /Todos/Details/" + id);
             if (id == null)
@@ -54,7 +54,6 @@ namespace DotNetAppSqlDb.Controllers
             Trace.WriteLine("POST /Todos/Create");
             if (ModelState.IsValid)
             {
-                todo.id = Guid.NewGuid();
                 db.Todoes.Add(todo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -64,7 +63,7 @@ namespace DotNetAppSqlDb.Controllers
         }
 
         // GET: Todos/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             Trace.WriteLine("GET /Todos/Edit/" + id);
             if (id == null)
@@ -86,7 +85,7 @@ namespace DotNetAppSqlDb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,Description,CreatedDate")] Todo todo)
         {
-            Trace.WriteLine("POST /Todos/Edit/" + todo.id);
+            Trace.WriteLine("POST /Todos/Edit/" + todo.ID);
             if (ModelState.IsValid)
             {
                 db.Entry(todo).State = EntityState.Modified;
@@ -97,7 +96,7 @@ namespace DotNetAppSqlDb.Controllers
         }
 
         // GET: Todos/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
             Trace.WriteLine("GET /Todos/Delete/" + id);
             if (id == null)
@@ -115,7 +114,7 @@ namespace DotNetAppSqlDb.Controllers
         // POST: Todos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Trace.WriteLine("POST /Todos/Delete/" + id);
             Todo todo = db.Todoes.Find(id);
