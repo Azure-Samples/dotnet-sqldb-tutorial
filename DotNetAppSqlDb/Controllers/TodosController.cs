@@ -49,7 +49,7 @@ namespace DotNetAppSqlDb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Description,CreatedDate")] Todo todo)
+        public ActionResult Create([Bind(Include = "Description,CreatedDate")] Todo todo)
         {
             Trace.WriteLine("POST /Todos/Create");
             if (ModelState.IsValid)
