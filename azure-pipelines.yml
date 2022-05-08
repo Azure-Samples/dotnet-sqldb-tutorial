@@ -32,3 +32,11 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'DOG Tech Test Subscription'
+    appType: 'webAppLinux'
+    WebAppName: 'appService-DC-Tech-Test'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
